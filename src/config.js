@@ -25,7 +25,8 @@ module.exports = Object.assign({
           type: 'text/javascript'
         },
         {
-          innerHTML: 'try{Typekit.load({ async: true });}catch(e){}'
+          innerHTML: `try{Typekit.load({ async: true });}catch(e){}`,
+          type: 'text/javascript'
         }
       ],
       meta: [
