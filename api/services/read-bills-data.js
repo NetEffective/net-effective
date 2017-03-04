@@ -25,6 +25,11 @@ const COLUMN_MAP = Object.freeze({
   opposedBecause: 'Opposed Because',
 });
 
+const DATE_COLUMNS = Object.freeze([
+  'submissionDate',
+  'nextVotingDate'
+]);
+
 
 function readBillsData() {
   return _fetchCSV()
@@ -111,6 +116,21 @@ function _parseCSV(rawCSV) {
         const columnInd = columnIndexMap[headerKey];
         obj[headerKey] = row[columnInd];
       }
+
+      // dates
+      for (let ind in DATE_COLUMNS) {
+        const headerKey = DATE_COLUMNS[ind];
+        if (obj[headerKey]) {
+          // these are in the format `YYYY-MM-DD`.
+          // setting a plain date would make it midnight UTC.
+          // instead use noon (12:00pm) Central Standard Time.
+          // (TODO - verify that this logic makes sense)
+          obj[headerKey] = new Date(`${obj[headerKey]} 12:00:00-06:00`);
+        } else {
+          obj[headerKey] = null;
+        }
+      }
+
       return obj;
     })
     .filter((objRows) => {
