@@ -5,12 +5,14 @@ import {reducer as reduxAsyncConnect} from 'redux-async-connect';
 
 import auth from './auth';
 import counter from './counter';
+import bills from './bills';
 import {reducer as form} from 'redux-form';
 
 export default combineReducers({
   routing: routeReducer,
   reduxAsyncConnect,
   auth,
+  bills,
   form,
   multireducer: multireducer({
     counter1: counter,
