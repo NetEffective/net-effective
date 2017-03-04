@@ -5,13 +5,12 @@ import {
     App,
     Chat,
     Home,
-    Widgets,
     About,
     Login,
     Signup,
     LoginSuccess,
-    Survey,
     NotFound,
+    StateDetail
   } from 'containers';
 
 export default (store) => {
@@ -47,11 +46,10 @@ export default (store) => {
       </Route>
 
       { /* Routes */ }
-      <Route path="about" component={About}/>
-      <Route path="login" component={Login}/>
-      <Route path="signup" component={Signup}/>
-      <Route path="survey" component={Survey}/>
-      <Route path="widgets" component={Widgets}/>
+      <Route path="about" component={About} />
+      <Route path="login" component={Login} />
+      <Route path="signup" component={Signup} />
+      <Route path="state/:stateName" component={StateDetail} />
 
       { /* Catch all route */ }
       <Route path="*" component={NotFound} status={404} />
