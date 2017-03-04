@@ -15,7 +15,7 @@ module.exports = Object.assign({
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT,
   app: {
-    title: 'NetEffective',
+    title: 'neteffective',
     description: 'All the modern best practices in one example.',
     head: {
       titleTemplate: 'React Redux Example: %s',
