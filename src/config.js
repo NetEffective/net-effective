@@ -18,11 +18,14 @@ module.exports = Object.assign({
     title: 'neteffective',
     description: 'Use your network to help improve abortion access for everyone',
     head: {
-      titleTemplate: 'React Redux Example: %s',
+      titleTemplate: 'neteffective %s',
       script: [
         {
-          src: "https://use.typekit.net/hyp6nus.js", 
-          type: "text/javascript"
+          src: 'https://use.typekit.net/hyp6nus.js',
+          type: 'text/javascript'
+        },
+        {
+          innerHTML: 'try{Typekit.load({ async: true });}catch(e){}'
         }
       ],
       meta: [
