@@ -16,17 +16,23 @@ module.exports = Object.assign({
   apiPort: process.env.APIPORT,
   app: {
     title: 'neteffective',
-    description: 'All the modern best practices in one example.',
+    description: 'Use your network to help improve abortion access for everyone',
     head: {
       titleTemplate: 'React Redux Example: %s',
+      script: [
+        {
+          src: "https://use.typekit.net/hyp6nus.js", 
+          type: "text/javascript"
+        }
+      ],
       meta: [
-        {name: 'description', content: 'All the modern best practices in one example.'},
+        {name: 'description', content: 'Use your network to help improve abortion access for everyone.'},
         {charset: 'utf-8'},
-        {property: 'og:site_name', content: 'React Redux Example'},
+        {property: 'og:site_name', content: 'neteffective'},
         {property: 'og:image', content: 'https://react-redux.herokuapp.com/logo.jpg'},
         {property: 'og:locale', content: 'en_US'},
-        {property: 'og:title', content: 'React Redux Example'},
-        {property: 'og:description', content: 'All the modern best practices in one example.'},
+        {property: 'og:title', content: 'neteffective'},
+        {property: 'og:description', content: 'Use your network to help improve abortion access for everyone'},
         {property: 'og:card', content: 'summary'},
         {property: 'og:site', content: '@erikras'},
         {property: 'og:creator', content: '@erikras'},
