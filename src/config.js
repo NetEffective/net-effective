@@ -31,7 +31,8 @@ module.exports = Object.assign({
           type: 'text/javascript'
         },
         {
-          innerHTML: 'try{Typekit.load({ async: true });}catch(e){}'
+          innerHTML: `try{Typekit.load({ async: true });}catch(e){}`,
+          type: 'text/javascript'
         }
       ],
       meta: [
@@ -47,6 +48,9 @@ module.exports = Object.assign({
         {property: 'og:creator', content: '@erikras'},
         {property: 'og:image:width', content: '200'},
         {property: 'og:image:height', content: '200'}
+      ],
+      link: [
+        {rel: 'stylesheet', href: 'https://unpkg.com/react-select/dist/react-select.css'}
       ]
     }
   },
