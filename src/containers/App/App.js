@@ -65,8 +65,6 @@ export default class App extends Component {
           <Navbar.Header>
             <Navbar.Brand>
               <IndexLink to="/" activeStyle={{color: '#33e0ff'}}>
-                <i className="fa fa-microphone" />
-                {' '}
                 <span>{config.app.title}</span>
               </IndexLink>
             </Navbar.Brand>
