@@ -1,5 +1,8 @@
 require('babel-polyfill');
 
+// read env vars from private `.env` file in root.
+require('dotenv').config();
+
 const environment = {
   development: {
     isProduction: false
@@ -14,6 +17,9 @@ module.exports = Object.assign({
   port: process.env.PORT,
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT,
+  apiKeys: {
+    googleCivicInfoApi: process.env.API_KEY_GOOGLE_CIVIC_INFO || '',
+  },
   app: {
     title: 'neteffective',
     description: 'Use your network to help improve abortion access for everyone',
