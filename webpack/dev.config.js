@@ -111,5 +111,6 @@ module.exports = {
       __DEVTOOLS__: true  // <-------- DISABLE redux-devtools HERE
     }),
     webpackIsomorphicToolsPlugin.development()
-  ]
+  ],
+  target: 'node'
 };
