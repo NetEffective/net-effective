@@ -5,5 +5,4 @@
  *
  */
 
-export CounterButton from './CounterButton/CounterButton';
-export GithubButton from './GithubButton/GithubButton';
+export StateSelection from './StateSelection/StateSelection';
