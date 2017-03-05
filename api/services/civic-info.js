@@ -27,12 +27,14 @@ function _buildRepsUrl(apiKey, addressStr) {
   return `https://www.googleapis.com/civicinfo/v2/representatives?key=${apiKey}&address=${addressStr}`;
 }
 
-
+// Return promise resolving to object of {reps, address}.
 function _parseRepsData(data) {
-  try {
-    const { offices, officials } = data;
+  let address = {};
+  const reps = [];
 
-    const reps = [];
+  try {
+    const { offices, officials, normalizedInput } = data;
+    address = normalizedInput;
 
     // find `sldl` (lower state legislature)
     // and `sldu` (upper state legislature) offices
@@ -54,12 +56,15 @@ function _parseRepsData(data) {
         }
       }
     }
-    return reps;
-
   } catch (err) {
     console.error('Failed to parse representative data', err);
-    return [];
   }
+
+  return {
+    reps,
+    address
+  };
+
 }
 
 

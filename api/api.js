@@ -39,7 +39,7 @@ app.use(passport.session());
 configPassport(passport);
 passportRoutes(app, passport);
 
-const router = require('./router');
+const router = require('./routes/router');
 app.use(router);
 
 const bufferSize = 100;
