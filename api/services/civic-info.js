@@ -13,14 +13,11 @@ function getStateRepresentatives(addressStr) {
     url,
     headers: {
       'Accept': 'application/json'
-    }
+    },
+    json: true
   })
   .then((response) => {
-    console.log(response.body);
-
-    // TODO parse response.body ...
-    // return array of *state* representatives
-
+    return _parseRepsData(response.body);
   });
 }
 
@@ -31,6 +28,43 @@ function _buildRepsUrl(apiKey, addressStr) {
 }
 
 
+function _parseRepsData(data) {
+  try {
+    const { offices, officials } = data;
+
+    const reps = [];
+
+    // find `sldl` (lower state legislature)
+    // and `sldu` (upper state legislature) offices
+    for (let officeInd = 0; officeInd < offices.length; officeInd++) {
+      const office = offices[officeInd];
+      // `divisionId` is e.g. "ocd-division/country:us/state:ca/sldl:15"
+      if (/\/sld[lu]:/.test(office.divisionId)) {
+        const {officialIndices} = office;
+        for (let j = 0; j < officialIndices; j++) {
+          const officialIndex = officialIndices[j];
+          const official = officials[officialIndex];
+          if (official) {
+            reps.push(
+              Object.assign({
+                office: office.name
+              }, official)
+            );
+          }
+        }
+      }
+    }
+    return reps;
+
+  } catch (err) {
+    console.error('Failed to parse representative data', err);
+    return [];
+  }
+}
+
+
 module.exports = {
-  getStateRepresentatives
+  getStateRepresentatives,
+  _buildRepsUrl,
+  _parseRepsData
 };
