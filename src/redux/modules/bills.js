@@ -17,7 +17,6 @@ export default function reducer(state = initialState, action = {}) {
         list: initialState.list,
       };
     case LOAD_BILLS_SUCCESS:
-      debugger;
       return {
         ...state,
         loading: false,
