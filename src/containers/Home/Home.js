@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import config from '../../config';
 import Helmet from 'react-helmet';
-import {StateSelection} from 'components';
+import {AddressSelection} from 'components';
 
 export default class Home extends Component {
   render() {
     const styles = require('./Home.scss');
     // require the logo image both from client and server
     const logoImage = require('./logo.png');
-    function logState(state) {
-      console.log(state);
+    function print(thing) {
+      console.log(thing);
     }
     return (
       <div className={styles.home}>
@@ -23,7 +23,6 @@ export default class Home extends Component {
             </div>
 
             <h2>{config.app.description}</h2>
-            <StateSelection onChange={logState}/>
             <p>
               <a className={styles.github} href="https://github.com/NetEffective/net-effective"
                  target="_blank">
@@ -31,6 +30,11 @@ export default class Home extends Component {
               </a>
             </p>
           </div>
+        </div>
+
+        <div className={styles.address}>
+          <h3>Please enter your address so we can show you a script for your representatives.</h3>
+          <AddressSelection onSubmit={print}/>
         </div>
       </div>
     );

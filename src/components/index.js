@@ -6,3 +6,4 @@
  */
 
 export StateSelection from './StateSelection/StateSelection';
+export AddressSelection from './AddressSelection/AddressSelection';
