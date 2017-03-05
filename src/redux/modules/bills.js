@@ -4,7 +4,8 @@ const LOAD_BILLS_FAIL = 'redux-example/auth/LOAD_US_STATE_FAIL';
 
 const initialState = {
   loaded: false,
-  bills: [],
+  currentUsState: null,
+  list: [],
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -16,11 +17,12 @@ export default function reducer(state = initialState, action = {}) {
         bills: initialState.bills,
       };
     case LOAD_BILLS_SUCCESS:
+      debugger;
       return {
         ...state,
         loading: false,
         loaded: true,
-        bills: action.payload
+        list: action.result.bills
       };
     case LOAD_BILLS_FAIL:
       return {
@@ -34,8 +36,9 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
+// export function set
+
 export function loadBills(stateCode) {
-  debugger;
   return {
     types: [LOAD_BILLS, LOAD_BILLS_SUCCESS, LOAD_BILLS_FAIL],
     promise: (client) => client.get(`/bills/state/${stateCode.toUpperCase()}`)

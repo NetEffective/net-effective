@@ -1,18 +1,21 @@
 import React, {PropTypes} from 'react';
+import {CallScript} from '..';
 
-const CallScript = ({userName, city, state, repName, billTitle, opposedBecause}) => {
+const Bill = (props) => {
   return (
-    <section className="call-script">
-      <p>Hi, my name is {userName} and I live in {city}, {state}.</p>
-      <p>I don't need a response.</p>
-      <p>I'm calling to urge {repName} to oppose {billTitle}
-        because {opposedBecause}.</p>
-      <p>Thank you for your time.</p>
-    </section>
+    <div className="bill panel panel-default">
+      <h2>{props.billTitle}</h2>
+      <div>
+        <a href={props.newsURL} target="_blank">View article</a>
+      </div>
+      <p>{props.billSummary}</p>
+      <p>Moderation status: {props.moderationStatus}</p>
+      <CallScript {...props} />
+    </div>
   );
 };
 
-CallScript.propTypes = {
+Bill.propTypes = {
   moderationStatus: PropTypes.string,
   state: PropTypes.string,
   topic: PropTypes.string,
@@ -26,4 +29,4 @@ CallScript.propTypes = {
   opposedBecause: PropTypes.string,
 };
 
-export default CallScript;
+export default Bill;
