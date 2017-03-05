@@ -1,9 +1,37 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import config from '../../config';
 import Helmet from 'react-helmet';
 import {AddressSelection} from 'components';
+import { push } from 'react-router-redux';
+import { connect } from 'react-redux';
+import * as authActions from 'redux/modules/auth';
+import * as repsActions from 'redux/modules/reps';
 
+@connect(
+  state => ({
+    user: state.auth.user
+  }),
+  {
+    pushState: push,
+    ...authActions,
+    ...repsActions,
+  }
+)
 export default class Home extends Component {
+  static propTypes = {
+    setUserInfo: PropTypes.func,
+    loadReps: PropTypes.func,
+    pushState: PropTypes.func,
+  }
+
+  setUserInfo(name, address) {
+    const usState = 'ar';
+    debugger;
+    this.props.setUserInfo(name, address);
+    this.props.loadReps(address);
+    this.props.pushState(`/state/${usState}`);
+  }
+
   render() {
     const styles = require('./Home.scss');
     // require the logo image both from client and server
@@ -32,7 +60,7 @@ export default class Home extends Component {
 
         <div className={styles.address}>
           <h3>Please enter your address so we can show you a script for your representatives.</h3>
-          <AddressSelection />
+          <AddressSelection onSubmit={(name, address) => this.setUserInfo(name, address)} />
         </div>
       </div>
     );

@@ -14,21 +14,21 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loading: true,
-        bills: initialState.bills,
+        list: initialState.list,
       };
     case LOAD_BILLS_SUCCESS:
       return {
         ...state,
         loading: false,
         loaded: true,
-        list: action.result.bills
+        list: action.result.bills,
       };
     case LOAD_BILLS_FAIL:
       return {
         ...state,
         loading: false,
         loaded: false,
-        error: action.error
+        error: action.error,
       };
     default:
       return state;

@@ -11,12 +11,23 @@ const SIGNUP = 'redux-example/auth/SIGNUP';
 const SIGNUP_SUCCESS = 'redux-example/auth/SIGNUP_SUCCESS';
 const SIGNUP_FAIL = 'redux-example/auth/SIGNUP_FAIL';
 
+const SET_USER_INFO = 'SET_USER_INFO';
+
 const initialState = {
   loaded: false
 };
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
+    case SET_USER_INFO:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          name: action.name,
+          address: action.address,
+        }
+      };
     case LOAD:
       return {
         ...state,
@@ -133,5 +144,13 @@ export function logout() {
   return {
     types: [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAIL],
     promise: (client) => client.get('/logout')
+  };
+}
+
+export function setUserInfo(name, address) {
+  return {
+    type: SET_USER_INFO,
+    name,
+    address,
   };
 }
