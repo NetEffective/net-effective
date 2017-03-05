@@ -16,11 +16,12 @@ export default function reducer(state = initialState, action = {}) {
         list: initialState,
       };
     case LOAD_REPS_SUCCESS:
+      debugger;
       return {
         ...state,
         loading: false,
         loaded: true,
-        list: action.result.list,
+        list: action.result,
       };
     case LOAD_REPS_FAIL:
       return {

@@ -11,7 +11,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loaded: true,
-        currentUsState: action.stateCode.toUpperCase()
+        currentUsState: action.stateCode ? action.stateCode.toUpperCase() : null,
       };
     default:
       return state;

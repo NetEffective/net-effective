@@ -22,9 +22,9 @@ class AddressSelection extends Component {
   }
 
   handleSubmit(event) {
+    const {name, address} = this.state;
     event.preventDefault();
-    debugger;
-    this.props.onSubmit(this.state.name, this.state.address);
+    this.props.onSubmit(name, address);
   }
 
   render() {

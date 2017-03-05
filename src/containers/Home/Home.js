@@ -5,7 +5,6 @@ import {AddressSelection} from 'components';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import * as authActions from 'redux/modules/auth';
-import * as repsActions from 'redux/modules/reps';
 
 @connect(
   state => ({
@@ -14,7 +13,6 @@ import * as repsActions from 'redux/modules/reps';
   {
     pushState: push,
     ...authActions,
-    ...repsActions,
   }
 )
 export default class Home extends Component {
@@ -26,9 +24,7 @@ export default class Home extends Component {
 
   setUserInfo(name, address) {
     const usState = 'ar';
-    debugger;
     this.props.setUserInfo(name, address);
-    this.props.loadReps(address);
     this.props.pushState(`/state/${usState}`);
   }
 
