@@ -10,7 +10,7 @@ const Rep = ({office, name, party, phones, urls, photoUrl, emails, channels}) =>
       <div className="row">
         <div className="col-sm-6">
 
-          <p>Site: <a href={urls[0]} target="_blank"></a></p>
+          <p>Site: <a href={urls[0]} target="_blank">{urls[0]}</a></p>
           <p>office: {office}</p>
           <p>party: {party}</p>
           <p>Phone: {phones[0]}</p>
