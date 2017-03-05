@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import * as authActions from 'redux/modules/auth';
+import * as locationActions from 'redux/modules/location';
 import {Login} from '..';
 
 @connect(
@@ -13,6 +14,7 @@ import {Login} from '..';
   {
     pushState: push,
     ...authActions,
+    ...locationActions,
   }
 )
 export default class Home extends Component {
@@ -20,19 +22,42 @@ export default class Home extends Component {
     setUserInfo: PropTypes.func,
     loadReps: PropTypes.func,
     pushState: PropTypes.func,
+    setLocation: PropTypes.func,
     user: PropTypes.object,
   }
 
   constructor(props) {
     super(props);
-    this.setUser = this.setUser.bind(this);
+    this.handleFacebookLogin = this.handleFacebookLogin.bind(this);
+    this.askForLocation = this.askForLocation.bind(this);
+    this.gotLocation = this.gotLocation.bind(this);
   }
 
-  setUser(user) {
+  handleFacebookLogin(user) {
     this.props.setUserInfo(user);
-    debugger;
-    this.props.pushState(`/state/${user.stateCode.toLowerCase()}`);
+    this.askForLocation();
   }
+
+  askForLocation() {
+    // if ("geolocation" in window.navigator) {
+    //   // geolocation is available
+    // } else {
+    //   // geolocation IS NOT available
+    // }
+
+    window.navigator.geolocation.getCurrentPosition(this.gotLocation, (err) => {
+      debugger;
+      console.log('geolocation error', err);
+      alert('Need your location!');
+    });
+  }
+
+  gotLocation(location) {
+    console.log(location.coords);
+    this.props.setLocation(location.coords);
+    this.props.pushState(`/state/${this.props.user.stateCode.toLowerCase()}`);
+  }
+
 
   render() {
     const styles = require('./Home.scss');
@@ -58,7 +83,7 @@ export default class Home extends Component {
               <h3 className={styles.h3 + ' col-md-10'}>Your network is powerful. Connect with your friends in states with laws that restrict abortion and harm female healthcare access. Give them a simple script to call their state representatives and advocate for women.</h3>
             </div>
             {! this.props.user &&
-            <Login callback={this.setUser} />
+            <Login callback={this.handleFacebookLogin} />
             }
             <p className={styles.github}>
               <a href="https://github.com/NetEffective/net-effective"

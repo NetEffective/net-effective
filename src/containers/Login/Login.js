@@ -109,7 +109,6 @@ export default class Login extends Component {
   facebookLoginCallback(response) {
     const { name, picture, location, friends } = response;
 
-    debugger;
     const locationInfo = location.name.split(',');
     const city = locationInfo[0];
     const stateName = locationInfo[1].substring(1);

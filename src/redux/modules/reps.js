@@ -34,9 +34,10 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
-export function loadReps(address) {
+export function loadReps(latitude, longitude) {
+  debugger;
   return {
     types: [LOAD_REPS, LOAD_REPS_SUCCESS, LOAD_REPS_FAIL],
-    promise: (client) => client.get(`/reps?address=${address}`)
+    promise: (client) => client.get(`/reps?address=${latitude},${longitude}`),
   };
 }

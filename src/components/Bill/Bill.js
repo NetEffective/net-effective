@@ -28,7 +28,7 @@ const Bill = (props) => {
           <h4>Ready to call? Here's a script for you.</h4>
           <CallScript {...props} />
           {_.map(props.reps, rep => (
-              <CallRep {...rep} large key={rep.name}/>
+              <CallRep {...rep} large key={rep.name} />
           ))}
         </div>
       </div>
@@ -39,7 +39,8 @@ const Bill = (props) => {
 Bill.propTypes = {
   moderationStatus: PropTypes.string,
   state: PropTypes.string,
-  address: PropTypes.string,
+  city: PropTypes.string,
+  usState: PropTypes.string,
   topic: PropTypes.string,
   submissionDate: PropTypes.string, // TODO: turn into date obj
   nextVotingDate: PropTypes.string,

@@ -11,9 +11,12 @@ import {Bill, Rep} from 'components';
   state => ({
     bills: state.bills.list,
     usState: state.usState.current,
-    address: state.auth.user ? state.auth.user.address : null,
+    // address: state.auth.user ? state.auth.user.address : null,
     name: state.auth.user ? state.auth.user.name : null,
     reps: state.reps.list,
+    location: state.location.coords,
+    userCity: state.auth.user ? state.auth.user.city : '',
+    userUsState: state.auth.user ? state.auth.user.stateName : '',
   }),
   {
     ...billsActions,
@@ -27,6 +30,7 @@ export default class StateDetail extends Component {
   static propTypes = {
     params: PropTypes.object,
     bills: PropTypes.array,
+    location: PropTypes.object,
     loadBills: PropTypes.func,
     setUsState: PropTypes.func,
     usState: PropTypes.object,
@@ -35,14 +39,21 @@ export default class StateDetail extends Component {
     reps: PropTypes.array,
     loadReps: PropTypes.func,
     pushState: PropTypes.func,
+    userCity: PropTypes.string,
+    userUsState: PropTypes.string,
   }
 
   componentWillMount() {
-    const { address, stateCode } = this.props.params;
+    const { stateCode } = this.props.params;
+    const { location } = this.props;
     this.props.setUsState(stateCode);
     this.props.loadBills(stateCode);
-    this.props.loadReps(address);
+    this.props.loadReps(location.latitude, location.longitude);
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   if
+  // }
 
   render() {
     const { address, usState } = this.props;
@@ -64,7 +75,14 @@ export default class StateDetail extends Component {
           <div className="col-md-8">
             <h2>Bills up for debate</h2>
             {_.map(this.props.bills, bill => (
-              <Bill {...bill} key={bill.billTitle} userName={this.props.name} reps={this.props.reps} address={this.props.address}/>
+              <Bill
+                {...bill}
+                key={bill.billTitle}
+                userName={this.props.name}
+                reps={this.props.reps}
+                city={this.props.userCity}
+                usState={this.props.userUsState}
+              />
             ))}
             <p className={styles.caughtup}>✌️ You're all caught up! No more bills.</p>
           </div>

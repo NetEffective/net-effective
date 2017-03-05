@@ -6,6 +6,7 @@ import auth from './auth';
 import bills from './bills';
 import usState from './usState';
 import reps from './reps';
+import location from './location';
 import {reducer as form} from 'redux-form';
 
 export default combineReducers({
@@ -16,4 +17,5 @@ export default combineReducers({
   form,
   usState,
   reps,
+  location,
 });
