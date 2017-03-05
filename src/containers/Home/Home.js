@@ -29,10 +29,10 @@ export default class Home extends Component {
     this.setUser = this.setUser.bind(this);
   }
 
-  setUser(name, address, imageUrl) {
-    const usState = 'ar';
-    this.props.setUserInfo(name, address, imageUrl);
-    this.props.pushState(`/state/${usState}`);
+  setUser(user) {
+    this.props.setUserInfo(user);
+    debugger;
+    this.props.pushState(`/state/${user.stateCode.toLowerCase()}`);
   }
 
   render() {

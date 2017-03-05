@@ -40,7 +40,10 @@ export default class StateDetail extends Component {
   }
 
   componentWillMount() {
-    const { address } = this.props;
+    // TODO: use geolocation instead: (JASON)
+    // const { address } = this.props;
+    const address = '191 Caselli Ave., San Francisco, CA 94114';
+
     const { stateCode } = this.props.params;
     if (! stateCode || ! address) {
       this.props.pushState('/');
