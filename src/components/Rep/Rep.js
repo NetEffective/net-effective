@@ -18,7 +18,7 @@ const Rep = ({office, name, party, phones, urls, photoUrl, emails, channels}) =>
 
           <ul className="socials list-unstyled">
             {_.map(channels, ({type, id}) => (
-              <p>{type}: {id}</p>
+              <p key={id}>{type}: {id}</p>
             ))}
           </ul>
         </div>
