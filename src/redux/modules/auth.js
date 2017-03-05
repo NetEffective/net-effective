@@ -1,15 +1,22 @@
-const LOAD = 'redux-example/auth/LOAD';
-const LOAD_SUCCESS = 'redux-example/auth/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/auth/LOAD_FAIL';
-const LOGIN = 'redux-example/auth/LOGIN';
-const LOGIN_SUCCESS = 'redux-example/auth/LOGIN_SUCCESS';
-const LOGIN_FAIL = 'redux-example/auth/LOGIN_FAIL';
-const LOGOUT = 'redux-example/auth/LOGOUT';
-const LOGOUT_SUCCESS = 'redux-example/auth/LOGOUT_SUCCESS';
-const LOGOUT_FAIL = 'redux-example/auth/LOGOUT_FAIL';
-const SIGNUP = 'redux-example/auth/SIGNUP';
-const SIGNUP_SUCCESS = 'redux-example/auth/SIGNUP_SUCCESS';
-const SIGNUP_FAIL = 'redux-example/auth/SIGNUP_FAIL';
+const LOAD = 'LOAD';
+const LOAD_SUCCESS = 'LOAD_SUCCESS';
+const LOAD_FAIL = 'LOAD_FAIL';
+
+const LOGIN = 'LOGIN';
+const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+const LOGIN_FAIL = 'LOGIN_FAIL';
+
+// const LOGIN_FB = 'LOGIN_FB';
+// const LOGIN_FB_SUCCESS = 'LOGIN_FB_SUCCESS';
+// const LOGIN_FB_FAIL = 'LOGIN_FB_FAIL';
+
+const LOGOUT = 'LOGOUT';
+const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+const LOGOUT_FAIL = 'LOGOUT_FAIL';
+
+const SIGNUP = 'SIGNUP';
+const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+const SIGNUP_FAIL = 'SIGNUP_FAIL';
 
 const SET_USER_INFO = 'SET_USER_INFO';
 
@@ -127,6 +134,13 @@ export function login(email, password) {
     })
   };
 }
+
+// export function loginWithFacebook() {
+//   return {
+//     types: [LOGIN_FB, LOGIN_FB_SUCCESS, LOGIN_FB_FAIL],
+//     promise: (client) => client.post('/auth/facebook')
+//   };
+// }
 
 export function signup(email, password) {
   return {

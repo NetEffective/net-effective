@@ -1,7 +1,11 @@
 import passportLocal from 'passport-local';
+import passportFacebook from 'passport-facebook';
 import { User } from '../models/index';
 
-var LocalStrategy = passportLocal.Strategy;
+const LocalStrategy = passportLocal.Strategy;
+// const FacebookStrategy = passportFacebook.Strategy;
+
+const config = require('../../src/config');
 
 export default function configPassport(passport) {
   passport.serializeUser( (user, done) => {
@@ -19,6 +23,18 @@ export default function configPassport(passport) {
     });
   });
 
+  // passport.use(new FacebookStrategy({
+  //     clientID: config.apiKeys.facebookAppId,
+  //     clientSecret: config.apiKeys.facebookAppSecret,
+  //     callbackURL: "http://localhost:3000/auth/facebook/callback" // ???????
+  //   },
+  //   function(accessToken, refreshToken, profile, cb) {
+  //     User.findOrCreate({ facebookId: profile.id }, (err, user) => {
+  //       return cb(err, user);
+  //     });
+  //   }
+  // ));
+
   passport.use('local-signup', new LocalStrategy({usernameField: 'email', passwordField: 'password', passReqToCallback: true}, (req, email, password, done) => {
     process.nextTick(() => {
       User.findOne({where: {email: email}}).then(user => {
@@ -35,7 +51,7 @@ export default function configPassport(passport) {
           done(null, newUser);
           return null;
       }).catch(err => {
-        console.log(`Err ${err}`); 
+        console.log(`Err ${err}`);
         done(err);
         return null;
       });
@@ -62,5 +78,5 @@ export default function configPassport(passport) {
     });
 
   }));
-  
+
 }

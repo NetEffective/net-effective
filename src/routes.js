@@ -6,7 +6,7 @@ import {
     Chat,
     Home,
     About,
-    Login,
+    LoginPage,
     Signup,
     LoginSuccess,
     NotFound,
@@ -47,7 +47,7 @@ export default (store) => {
 
       { /* Routes */ }
       <Route path="about" component={About} />
-      <Route path="login" component={Login} />
+      <Route path="login" component={LoginPage} />
       <Route path="signup" component={Signup} />
       <Route path="state/:stateCode" component={StateDetail} />
 

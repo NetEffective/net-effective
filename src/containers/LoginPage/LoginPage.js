@@ -6,36 +6,35 @@ import * as authActions from 'redux/modules/auth';
   state => ({user: state.auth.user}),
   authActions
 )
-export default class Login extends Component {
+export default class LoginPage extends Component {
   static propTypes = {
     user: PropTypes.object,
     login: PropTypes.func,
     logout: PropTypes.func
   }
 
-  // handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   this.props.login(this.refs.email.value, this.refs.password.value);
-  //   this.refs.email.value = '';
-  //   this.refs.password.value = '';
-  // }
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.login(this.refs.email.value, this.refs.password.value);
+    this.refs.email.value = '';
+    this.refs.password.value = '';
+  }
 
   render() {
     const {user, logout} = this.props;
-    const styles = require('./Login.scss');
+    const styles = require('./LoginPage.scss');
     return (
       <div className={styles.login + ' container'}>
         {!user &&
         <div>
-
-          <div className="row">
-            <div className="col-sm-6 col-sm-offset-3">
-              <button className={styles.btnFbConnect + ' btn btn-block btn-lg'}>
-                <i className="fa fa-facebook-square fa-lg" style={{marginRight: 10}} />
-                Connect with Facebook
-              </button>
+          <form className="login-form form-inline" onSubmit={this.handleSubmit}>
+            <div className="form-group">
+              <input type="text" ref="email" placeholder="email" className="form-control"/><br/>
+              <input type="password" ref="password" placeholder="password" className="form-control"/><br/>
+            <button className="btn btn-success" onClick={this.handleSubmit}><i className="fa fa-sign-in"/>{' '}Log In
+            </button>
             </div>
-          </div>
+          </form>
         </div>
         }
         {user &&

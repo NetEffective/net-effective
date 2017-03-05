@@ -5,6 +5,7 @@ import {AddressSelection} from 'components';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import * as authActions from 'redux/modules/auth';
+import {Login} from '..';
 
 @connect(
   state => ({
@@ -36,6 +37,7 @@ export default class Home extends Component {
     return (
       <div className={styles.home}>
         <Helmet title="Home"/>
+        <Login />
         <div className={styles.masthead}>
           <div className="container">
             <div className={styles.logo}>

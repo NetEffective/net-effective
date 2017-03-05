@@ -1,5 +1,5 @@
 export default function passportRoutes(app, passport) {
-  app.post('/login', 
+  app.post('/login',
            passport.authenticate('local-login'),
            (req, res) => {
              console.log(`User ${req.user.username} logged in`);
@@ -13,7 +13,19 @@ export default function passportRoutes(app, passport) {
            }
           );
 
-  app.post('/signup', 
+  // app.get('/auth/facebook',
+  //   passport.authenticate('facebook')
+  // );
+  //
+  // app.get('/auth/facebook/callback',
+  //   passport.authenticate('facebook', { failureRedirect: '/login' }),
+  //   function(req, res) {
+  //     // Successful authentication, redirect home.
+  //     res.redirect('/');
+  //   }
+  // );
+
+  app.post('/signup',
            passport.authenticate('local-signup'),
            (req, res) => {
              // req.user now contains the right user
@@ -50,7 +62,7 @@ export default function passportRoutes(app, passport) {
           }
          );
 
-/* 
+/*
 # Facebook login routes
 app.get '/auth/facebook', passport.authenticate 'facebook', æ scope: 'email'
 app.get '/auth/facebook/callback', passport.authenticate 'facebook', æ successRedirect : '/profile',  failureRedirect : '/' å
