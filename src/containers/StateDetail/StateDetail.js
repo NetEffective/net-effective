@@ -7,6 +7,7 @@ import * as repsActions from 'redux/modules/reps';
 import * as locationActions from 'redux/modules/location';
 import { push } from 'react-router-redux';
 import {Bill, Rep} from 'components';
+import {Link} from 'react-router';
 
 @connect(
   state => ({
@@ -64,12 +65,14 @@ export default class StateDetail extends Component {
     if (! location) {
       this.askForLocation();
     } else {
+      debugger;
       this.props.loadReps(location.latitude, location.longitude);
     }
     // this.props.loadReps(location.latitude, location.longitude);
   }
 
   componentWillReceiveProps(nextProps) {
+    debugger;
     if (! this.props.location && nextProps.location) {
       this.props.loadReps(location.latitude, location.longitude);
     }
@@ -92,6 +95,7 @@ export default class StateDetail extends Component {
   render() {
     const { address, usState } = this.props;
     const styles = require('./StateDetail.scss');
+    debugger;
     return (
       <div>
         <div className="row">
@@ -132,6 +136,16 @@ export default class StateDetail extends Component {
             {_.map(this.props.reps, (rep, i) => (
               <Rep key={`rep-${i}`} {...rep} />
             ))}
+
+
+            <div>
+              Friends
+              {_.map(this.props.friends, friend => (
+                <Link to="/state/ar">
+                  {friend.name}
+                </Link>
+              ))}
+            </div>
           </div>
           }
 
