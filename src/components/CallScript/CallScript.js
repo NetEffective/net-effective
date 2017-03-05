@@ -1,11 +1,11 @@
 import React, {PropTypes} from 'react';
 
-const CallScript = ({userName, city, state, repName, billTitle, opposedBecause}) => {
+const CallScript = (props) => {
   return (
     <section className="call-script well">
-      <p>Hi, my name is {userName} and I live in {city}, {state}.</p>
+      <p>Hi, my name is {props.userName} and I live at {props.address}.</p>
       <p>I don't need a response.</p>
-      <p>I'm calling to urge {repName} to oppose {billTitle} because {opposedBecause}.</p>
+      <p>I'm calling to urge {props.repName} to oppose {props.billTitle} because {props.opposedBecause}.</p>
       <p>Thank you for your time.</p>
     </section>
   );
@@ -13,7 +13,7 @@ const CallScript = ({userName, city, state, repName, billTitle, opposedBecause})
 
 CallScript.propTypes = {
   moderationStatus: PropTypes.string,
-  state: PropTypes.string,
+  address: PropTypes.string,
   topic: PropTypes.string,
   submissionDate: PropTypes.string, // TODO: turn into date obj
   nextVotingDate: PropTypes.string,
@@ -23,6 +23,8 @@ CallScript.propTypes = {
   billTitle: PropTypes.string,
   billSummary: PropTypes.string,
   opposedBecause: PropTypes.string,
+  userName: PropTypes.string,
+  repName: PropTypes.string,
 };
 
 export default CallScript;

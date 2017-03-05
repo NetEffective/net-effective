@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
-import {CallScript} from '..';
+import { CallScript, CallRep } from 'components';
+import _ from 'lodash';
 
 const Bill = (props) => {
   const billImage = require('./bill.svg');
@@ -26,7 +27,9 @@ const Bill = (props) => {
           <hr/>
           <h4>Ready to call? Here's a script for you.</h4>
           <CallScript {...props} />
-          <button className="btn btn-primary">Call Now</button>
+          {_.map(props.reps, rep => (
+              <CallRep {...rep} large key={rep.name}/>
+          ))}
         </div>
       </div>
     </div>
@@ -36,6 +39,7 @@ const Bill = (props) => {
 Bill.propTypes = {
   moderationStatus: PropTypes.string,
   state: PropTypes.string,
+  address: PropTypes.string,
   topic: PropTypes.string,
   submissionDate: PropTypes.string, // TODO: turn into date obj
   nextVotingDate: PropTypes.string,
@@ -45,6 +49,8 @@ Bill.propTypes = {
   billTitle: PropTypes.string,
   billSummary: PropTypes.string,
   opposedBecause: PropTypes.string,
+  reps: PropTypes.array,
+  userName: PropTypes.string,
 };
 
 export default Bill;
