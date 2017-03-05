@@ -100,6 +100,9 @@ module.exports = {
     ],
     extensions: ['', '.json', '.js', '.jsx']
   },
+  node: {
+    fs: 'empty'
+  },
   plugins: [
     // hot reload
     new webpack.HotModuleReplacementPlugin(),
@@ -111,6 +114,5 @@ module.exports = {
       __DEVTOOLS__: true  // <-------- DISABLE redux-devtools HERE
     }),
     webpackIsomorphicToolsPlugin.development()
-  ],
-  target: 'node'
+  ]
 };
