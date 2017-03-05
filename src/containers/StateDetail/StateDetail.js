@@ -5,7 +5,7 @@ import * as billsActions from 'redux/modules/bills';
 import * as usStateActions from 'redux/modules/usState';
 import * as repsActions from 'redux/modules/reps';
 import { push } from 'react-router-redux';
-import {Bill} from '../../components';
+import {Bill, Rep} from '../../components';
 
 @connect(
   state => ({
@@ -80,9 +80,7 @@ export default class StateDetail extends Component {
             <h2><strong>{usState.code}</strong> Reps</h2>
             <ul>
               {_.map(this.props.reps, (rep, i) => (
-                <div key={`rep-${i}`}>
-                  Rep {i}
-                </div>
+                <Rep key={`rep-${i}`} {...rep} />
               ))}
             </ul>
           </div>

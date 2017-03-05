@@ -4,7 +4,9 @@ import {CallScript} from '..';
 const Bill = (props) => {
   return (
     <div className="bill panel panel-default">
-      <h2>{props.billTitle}</h2>
+      <div className="panel-heading">
+        <h2 className="panel-title">{props.billTitle}</h2>
+      </div>
       <div>
         <a href={props.newsURL} target="_blank">View article</a>
       </div>
