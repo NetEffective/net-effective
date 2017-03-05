@@ -6,6 +6,7 @@ import {reducer as reduxAsyncConnect} from 'redux-async-connect';
 import auth from './auth';
 import counter from './counter';
 import bills from './bills';
+import usState from './usState';
 import {reducer as form} from 'redux-form';
 
 export default combineReducers({
@@ -14,6 +15,7 @@ export default combineReducers({
   auth,
   bills,
   form,
+  usState,
   multireducer: multireducer({
     counter1: counter,
     counter2: counter,
