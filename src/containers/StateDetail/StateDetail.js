@@ -7,8 +7,6 @@ import * as repsActions from 'redux/modules/reps';
 import { push } from 'react-router-redux';
 import {Bill, Rep} from 'components';
 
-const hardcodedAddress = '4301 Kinkead Ave, Fort Smith, AR 72903';
-
 @connect(
   state => ({
     bills: state.bills.list,
@@ -40,25 +38,14 @@ export default class StateDetail extends Component {
   }
 
   componentWillMount() {
-    let { address } = this.props;
-    const { stateCode } = this.props.params;
-    if (! stateCode) {
-      this.props.setUsState('AR');
-    }
-    if (! address) {
-      address = hardcodedAddress;
-    }
+    const { address, stateCode } = this.props.params;
     this.props.setUsState(stateCode);
     this.props.loadBills(stateCode);
     this.props.loadReps(address);
   }
 
   render() {
-    const { usState } = this.props;
-    let { address } = this.props;
-    if (! address) {
-      address = hardcodedAddress;
-    }
+    const { address, usState } = this.props;
     const styles = require('./StateDetail.scss');
     return (
       <div>

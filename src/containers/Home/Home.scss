@@ -1,49 +1,30 @@
 @import "../../theme/variables.scss";
 
-.home {
-  dd {
-    margin-bottom: 15px;
-  }
+.intro {
+  margin-top: 9em;
+  margin-bottom: 5em;
 }
-.masthead {
-  padding: 40px 20px;
-  color: white;
-  text-align: center;
-}
+
 .masthead {
   .logo {
-    $size: 200px;
-    margin: auto;
+    $size: 150px;
     height: $size;
     width: $size;
-    vertical-align: middle;
-    p {
-      line-height: $size;
-      margin: 0px;
-    }
     img {
-      width: 75%;
+      height: $size;
       margin: auto;
+      margin-top: 1em;
     }
   }
   h1 {
     color: $brand-primary;
-    font-size: 4em;
   }
-  h2 {
-    color: #ddd;
-    font-size: 2em;
-    margin: 20px;
-  }
-  a {
-    color: #ddd;
-  }
-  p {
-    margin: 10px;
+  h3 {
+    line-height: 1.6em;
+    margin-bottom: 1em;
   }
 }
 
-.counterContainer {
-  text-align: center;
-  margin: 20px;
+.github {
+  margin-top: 6em;
 }

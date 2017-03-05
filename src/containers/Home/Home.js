@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import config from '../../config';
 import Helmet from 'react-helmet';
 // import {AddressSelection} from 'components';
 import { push } from 'react-router-redux';
@@ -43,20 +42,26 @@ export default class Home extends Component {
     return (
       <div className={styles.home}>
         <Helmet title="Home"/>
-        {! this.props.user &&
-        <Login callback={this.setUser} />
-        }
         <div className={styles.masthead}>
           <div className="container">
-            <div className={styles.logo}>
-              <p>
+            <div className={styles.intro + ' row'}>
+              <div className="col-md-7">
+                <h1>Advocate for women's health.</h1>
+                <h1>Leverage the power of your network.</h1>
+                <h1>Make change.</h1>
+              </div>
+              <div className={styles.logo + ' col-md-5'}>
                 <img src={logoImage}/>
-              </p>
+              </div>
             </div>
-
-            <h2>{config.app.description}</h2>
-            <p>
-              <a className={styles.github} href="https://github.com/NetEffective/net-effective"
+            <div className="row">
+              <h3 className={styles.h3 + ' col-md-10'}>Your network is powerful. Connect with your friends in states with laws that restrict abortion and harm female healthcare access. Give them a simple script to call their state representatives and advocate for women.</h3>
+            </div>
+            {! this.props.user &&
+            <Login callback={this.setUser} />
+            }
+            <p className={styles.github}>
+              <a href="https://github.com/NetEffective/net-effective"
                  target="_blank">
                 <i className="fa fa-github"/> View on Github
               </a>
@@ -64,10 +69,10 @@ export default class Home extends Component {
           </div>
         </div>
 
-        {/* <div className={styles.address}> */}
-          {/* <h3>Please enter your address so we can show you a script for your representatives.</h3> */}
-          {/* <AddressSelection onSubmit={(name, address) => this.setUser(name, address)} /> */}
-        {/* </div> */}
+        {/* <div className={styles.address}>
+          <h3>Please enter your address so we can show you a script for your representatives.</h3>
+          <AddressSelection onSubmit={(name, address) => this.setUser(name, address)} />
+        </div> */}
       </div>
     );
   }

@@ -129,12 +129,12 @@ export default class Login extends Component {
     const styles = require('./Login.scss');
     // const { facebookAppId } = config.apiKeys;
     return (
-      <div className={styles.login + ' container'}>
+      <div className={styles.login}>
         {!user &&
         <div>
 
           <div className="row">
-            <div className="col-sm-6 col-sm-offset-3">
+            <div className="col-sm-6">
               {false &&
               <button className={styles.btnFbConnect + ' btn btn-block btn-lg'}>
                 <i className="fa fa-facebook-square fa-lg" style={{marginRight: 10}} />

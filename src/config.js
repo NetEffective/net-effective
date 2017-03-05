@@ -24,9 +24,9 @@ module.exports = Object.assign({
   },
   app: {
     title: 'neteffective',
-    description: 'Use your network to help improve abortion access for everyone',
+    description: 'Advocate for women\'s health, leveraging the power of your network',
     head: {
-      titleTemplate: 'neteffective %s',
+      titleTemplate: 'neteffective | %s',
       script: [
         {
           src: 'https://use.typekit.net/hyp6nus.js',
