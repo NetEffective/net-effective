@@ -27,3 +27,10 @@
   margin-right: auto;
   width: 80%;
 }
+
+.fbProfileThumbnail {
+  $size: 36px;
+  width: $size;
+  height: $size;
+  margin-left: 10px;
+}

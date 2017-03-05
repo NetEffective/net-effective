@@ -33,6 +33,7 @@ export default function reducer(state = initialState, action = {}) {
           ...state.user,
           name: action.name,
           address: action.address,
+          imageUrl: action.imageUrl,
         }
       };
     case LOAD:
@@ -161,10 +162,11 @@ export function logout() {
   };
 }
 
-export function setUserInfo(name, address) {
+export function setUserInfo(name, address = null, imageUrl = null) {
   return {
     type: SET_USER_INFO,
     name,
     address,
+    imageUrl,
   };
 }

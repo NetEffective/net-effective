@@ -21,6 +21,7 @@ export default class Home extends Component {
     setUserInfo: PropTypes.func,
     loadReps: PropTypes.func,
     pushState: PropTypes.func,
+    user: PropTypes.object,
   }
 
   setUserInfo(name, address) {
@@ -37,7 +38,9 @@ export default class Home extends Component {
     return (
       <div className={styles.home}>
         <Helmet title="Home"/>
+        {! this.props.user &&
         <Login />
+        }
         <div className={styles.masthead}>
           <div className="container">
             <div className={styles.logo}>
