@@ -6,7 +6,7 @@
 
 const csv = require('csv');
 const debug = require('debug')('read-bills-data');    // use `DEBUG=read-bills-data` to view logs
-const request = require('request');
+const requestPromised = require('../utils/request-promised');
 
 const CSV_URL = process.env.BILLS_CSV_URL || 'https://docs.google.com/spreadsheets/d/1YeATxl_uLNSi1Ce4JnMNI0LctIggJz5VTtyaxQ-nKsQ/pub?gid=0&single=true&output=csv';
 
@@ -45,27 +45,17 @@ function _fetchCSV() {
 
     // Read whole file and parse.
     // If it gets very large, can switch to streaming.
-    request({
+    requestPromised({
       method: 'GET',
       url: CSV_URL,
       headers: {
         'User-Agent': 'Abortion Access Hackathon NetEffective App',
         'Accept': 'text/csv'
       }
-    }, (err, response) => {
-      debug('Response', err, response.statusCode, response.body);
-
-      if (err) {
-        reject(err);
-        return;
-      }
-      if (response.statusCode !== 200) {
-        reject(new Error(`Invalid response ${response.statusCode}`));
-        return;
-      }
-
-      const rawCSV = response.body;
-      fulfill(rawCSV);
+    })
+    .then((response) => {
+      debug('Response', response.statusCode, response.body);
+      fulfill(response.body);
     });
   });
 }
