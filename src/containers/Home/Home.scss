@@ -5,10 +5,12 @@
     margin-bottom: 15px;
   }
 }
-.masthead {
+.address, .masthead {
   padding: 40px 20px;
   color: white;
   text-align: center;
+}
+.masthead {
   .logo {
     $size: 200px;
     margin: auto;

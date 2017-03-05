@@ -57,6 +57,7 @@ export default class App extends Component {
   render() {
     const {user} = this.props;
     const styles = require('./App.scss');
+    const logoImage = require('./logo-small.png');
 
     return (
       <div className={styles.app}>
@@ -65,7 +66,7 @@ export default class App extends Component {
           <Navbar.Header>
             <Navbar.Brand>
               <IndexLink to="/">
-                <span>{config.app.title}</span>
+                <span><img className={styles.logo} src={logoImage}/></span>
               </IndexLink>
             </Navbar.Brand>
             <Navbar.Toggle/>

@@ -17,7 +17,6 @@ export default function reducer(state = initialState, action = {}) {
         bills: initialState.bills,
       };
     case LOAD_BILLS_SUCCESS:
-      debugger;
       return {
         ...state,
         loading: false,
@@ -35,8 +34,6 @@ export default function reducer(state = initialState, action = {}) {
       return state;
   }
 }
-
-// export function set
 
 export function loadBills(stateCode) {
   return {

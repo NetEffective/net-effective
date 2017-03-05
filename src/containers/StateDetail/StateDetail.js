@@ -26,7 +26,6 @@ export default class StateDetail extends Component {
 
   render() {
     // const styles = require('./StateDetail.scss');
-    debugger;
     return (
       <div className="container">
         <div>
