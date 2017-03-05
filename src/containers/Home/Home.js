@@ -8,9 +8,7 @@ export default class Home extends Component {
     const styles = require('./Home.scss');
     // require the logo image both from client and server
     const logoImage = require('./logo.png');
-    function print(thing) {
-      console.log(thing);
-    }
+
     return (
       <div className={styles.home}>
         <Helmet title="Home"/>
@@ -34,7 +32,7 @@ export default class Home extends Component {
 
         <div className={styles.address}>
           <h3>Please enter your address so we can show you a script for your representatives.</h3>
-          <AddressSelection onSubmit={print}/>
+          <AddressSelection />
         </div>
       </div>
     );

@@ -5,7 +5,7 @@ import {reduxForm} from 'redux-form';
   form: 'address-form',
   fields: ['name', 'address']
 })
-export default
+
 class AddressSelection extends Component {
   static propTypes = {
     active: PropTypes.string,
@@ -17,31 +17,37 @@ class AddressSelection extends Component {
     valid: PropTypes.bool.isRequired
   }
 
-  render() {
-    const {
-      fields: {address},
-      handleSubmit
-    } = this.props;
-    function onChange(event) {
-      const newText = event.target.value;
-      this.setState({field: newText});
-    }
-    const renderInput = (field, label) =>
-      <div className={'form-group' + (field.error && field.touched ? ' has-error' : '')}>
-        <label htmlFor={field.name} className="col-sm-2">{label}</label>
-        <div className={'col-sm-8'}>
-          <input type="text" className="form-control" id={field.name} {...field} onChange={onChange}/>
-          {field.error && field.touched && <div className="text-danger">{field.error}</div>}
-        </div>
-      </div>;
+  onChange(event) {
+    this.setState({field: event.target.value});
+  }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(event);
+    // {/*field.error && field.touched && <div className="text-danger">{field.error}</div>*/}
+  }
+
+  render() {
     return (
       <div>
-        <form className="form-horizontal" onSubmit={handleSubmit}>
-          {renderInput(address, 'Address')}
+        <form className="form-horizontal" onSubmit={this.handleSubmit.bind(this)}>
+          <div className="form-group">
+            <label htmlFor="name" className="col-sm-2">Name: </label>
+            <div className="col-sm-8">
+              <input type="text" className="form-control" id="name" onChange={this.onChange.bind(this)}/>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="address" className="col-sm-2">Address: </label>
+            <div className="col-sm-8">
+              <input type="text" className="form-control" id="name" onChange={this.onChange.bind(this)}/>
+            </div>
+          </div>;
+
           <div className="form-group">
             <div className="col-sm-offset-2 col-sm-10">
-              <button className="btn btn-success" onClick={handleSubmit}>
+              <button className="btn btn-success" type="submit">
                 <i className="fa fa-paper-plane"/> Submit
               </button>
             </div>
@@ -51,3 +57,5 @@ class AddressSelection extends Component {
     );
   }
 }
+
+export default AddressSelection;
