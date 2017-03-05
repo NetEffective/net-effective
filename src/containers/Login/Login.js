@@ -4,7 +4,7 @@ import FacebookLogin from 'react-facebook-login';
 
 import * as authActions from 'redux/modules/auth';
 
-const config = require('../../config');
+// const config = require('../../config');
 
 @connect(
   state => ({user: state.auth.user}),
@@ -14,7 +14,8 @@ export default class Login extends Component {
   static propTypes = {
     user: PropTypes.object,
     login: PropTypes.func,
-    logout: PropTypes.func
+    logout: PropTypes.func,
+    setUserInfo: PropTypes.func,
   }
 
   constructor(props) {
@@ -35,13 +36,15 @@ export default class Login extends Component {
   }
 
   facebookLoginCallback(response) {
-    console.log(response);
     debugger;
+    this.props.setUserInfo(response.name, null, response.picture.data.url);
   }
 
   render() {
     const {user, logout} = this.props;
     const styles = require('./Login.scss');
+    // const { facebookAppId } = config.apiKeys;
+    // debugger;
     return (
       <div className={styles.login + ' container'}>
         {!user &&
@@ -49,17 +52,19 @@ export default class Login extends Component {
 
           <div className="row">
             <div className="col-sm-6 col-sm-offset-3">
+              {false &&
               <button className={styles.btnFbConnect + ' btn btn-block btn-lg'}>
                 <i className="fa fa-facebook-square fa-lg" style={{marginRight: 10}} />
                 Connect with Facebook
               </button>
+              }
 
               <FacebookLogin
-                appId={config.apiKeys.facebookAppId}
+                appId="1297839500295733"
                 autoLoad
                 fields="name,email,picture"
                 onClick={this.handleFacebookButtonClick}
-                scope="public_profile,user_friends,user_location"
+                scope="public_profile,user_friends,user_location,user_hometown"
                 callback={this.facebookLoginCallback}
               />
             </div>

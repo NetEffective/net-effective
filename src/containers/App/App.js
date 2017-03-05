@@ -95,8 +95,19 @@ export default class App extends Component {
                 </NavItem>
               </LinkContainer>}
             </Nav>
+
             {user &&
-            <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{user.email}</strong>.</p>}
+            <Nav navbar pullRight>
+              <li>
+                <a href="#" style={{padding: '7px 15px'}}>
+                  Logged in as <strong>{user.name}</strong>
+                  {user.imageUrl &&
+                  <img src={user.imageUrl} alt={user.name} className={styles.fbProfileThumbnail} />
+                  }
+                </a>
+              </li>
+            </Nav>
+            }
           </Navbar.Collapse>
         </Navbar>
 
