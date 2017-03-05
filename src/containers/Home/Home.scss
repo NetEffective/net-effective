@@ -27,7 +27,7 @@
     }
   }
   h1 {
-    color: $cyan;
+    color: $brand-primary;
     font-size: 4em;
   }
   h2 {
@@ -40,15 +40,6 @@
   }
   p {
     margin: 10px;
-  }
-  .humility {
-    color: $humility;
-    a {
-      color: $humility;
-    }
-  }
-  .github {
-    font-size: 1.5em;
   }
 }
 

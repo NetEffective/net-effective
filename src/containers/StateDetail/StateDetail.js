@@ -7,9 +7,10 @@ import * as repsActions from 'redux/modules/reps';
 import { push } from 'react-router-redux';
 import {Bill, Rep} from 'components';
 
+const hardcodedAddress = '4301 Kinkead Ave, Fort Smith, AR 72903';
+
 @connect(
   state => ({
-    // user: state.auth.user,
     bills: state.bills.list,
     usState: state.usState.current,
     address: state.auth.user ? state.auth.user.address : null,
@@ -27,26 +28,25 @@ import {Bill, Rep} from 'components';
 export default class StateDetail extends Component {
   static propTypes = {
     params: PropTypes.object,
-    // user: PropTypes.object,
     bills: PropTypes.array,
     loadBills: PropTypes.func,
     setUsState: PropTypes.func,
     usState: PropTypes.object,
     address: PropTypes.string,
-    userName: PropTypes.string,
+    name: PropTypes.string,
     reps: PropTypes.array,
     loadReps: PropTypes.func,
     pushState: PropTypes.func,
   }
 
   componentWillMount() {
-    // TODO: use geolocation instead: (JASON)
-    // const { address } = this.props;
-    const address = '191 Caselli Ave., San Francisco, CA 94114';
-
+    let { address } = this.props;
     const { stateCode } = this.props.params;
-    if (! stateCode || ! address) {
-      this.props.pushState('/');
+    if (! stateCode) {
+      this.props.setUsState('AR');
+    }
+    if (! address) {
+      address = hardcodedAddress;
     }
     this.props.setUsState(stateCode);
     this.props.loadBills(stateCode);
@@ -54,11 +54,12 @@ export default class StateDetail extends Component {
   }
 
   render() {
-    // const { usState, address } = this.props;
-    const styles = require('./StateDetail.scss');
-    // TODO: @dgattey remove
-    const address = '191 Caselli Ave., San Francisco, CA 94114';
     const { usState } = this.props;
+    let { address } = this.props;
+    if (! address) {
+      address = hardcodedAddress;
+    }
+    const styles = require('./StateDetail.scss');
     return (
       <div>
         <div className="row">
@@ -76,7 +77,7 @@ export default class StateDetail extends Component {
           <div className="col-md-8">
             <h2>Bills up for debate</h2>
             {_.map(this.props.bills, bill => (
-              <Bill {...bill} key={bill.billTitle} userName={this.props.userName} />
+              <Bill {...bill} key={bill.billTitle} userName={this.props.name} reps={this.props.reps} address={this.props.address}/>
             ))}
             <p className={styles.caughtup}>✌️ You're all caught up! No more bills.</p>
           </div>

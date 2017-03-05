@@ -1,33 +1,20 @@
 import React, {PropTypes} from 'react';
-import _ from 'lodash';
+import { CallRep } from 'components';
 
-const Rep = ({office, name, party, phones, urls, photoUrl, emails, channels}) => {
+const Rep = (props) => {
+  const styles = require('./Rep.scss');
   return (
-    <div className="bill panel panel-default">
-      <div className="panel-heading">
-        <h2 className="panel-title">{name}</h2>
+    <div className={styles.rep + ' row'}>
+      <div className="col-md-4">
+        <img src={props.photoUrl} className={styles.photo + ' img-rounded'} alt={props.name} />
       </div>
-      <div className="row">
-        <div className="col-sm-6">
-
-          <p>Site: <a href={urls[0]} target="_blank">{urls[0]}</a></p>
-          <p>office: {office}</p>
-          <p>party: {party}</p>
-          <p>Phone: {phones[0]}</p>
-          <p>Email: {emails[0]}</p>
-
-          <ul className="socials list-unstyled">
-            {_.map(channels, ({type, id}) => (
-              <p key={id}>{type}: {id}</p>
-            ))}
-          </ul>
-        </div>
-        <div className="col-sm-6 col-md-3">
-          <img src={photoUrl} className="img-fluid" alt={name} />
-        </div>
+      <div className="content col-md-8">
+        <h4>{props.name}</h4>
+        <p>{props.office}</p>
+        <p>{props.party}</p>
+        <CallRep {...props} key={props.name}/>
+        <a href={'mailto:' + props.emails[0]}>{props.emails[0]}</a>
       </div>
-
-
     </div>
   );
 };

@@ -7,11 +7,10 @@
  */
 
 // Custom Colors
-$cyan: #5cb85c;
-$humility: #777;
+$pink-brand: #f06f73;
 
 // Bootstrap Variables
-$brand-primary: darken(#5cb85c, 6.5%);
+$brand-primary: darken($pink-brand, 6.5%);
 $brand-secondary: #e25139;
 $brand-success: #5cb85c;
 $brand-warning: #f0ad4e;
