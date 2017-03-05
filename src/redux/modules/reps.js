@@ -13,7 +13,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loading: true,
-        list: initialState,
+        list: initialState.list,
       };
     case LOAD_REPS_SUCCESS:
       return {
