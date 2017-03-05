@@ -4,6 +4,7 @@ import _ from 'lodash';
 import * as billsActions from 'redux/modules/bills';
 import * as usStateActions from 'redux/modules/usState';
 import * as repsActions from 'redux/modules/reps';
+import * as locationActions from 'redux/modules/location';
 import { push } from 'react-router-redux';
 import {Bill, Rep} from 'components';
 
@@ -11,17 +12,19 @@ import {Bill, Rep} from 'components';
   state => ({
     bills: state.bills.list,
     usState: state.usState.current,
-    // address: state.auth.user ? state.auth.user.address : null,
     name: state.auth.user ? state.auth.user.name : null,
     reps: state.reps.list,
     location: state.location.coords,
     userCity: state.auth.user ? state.auth.user.city : '',
     userUsState: state.auth.user ? state.auth.user.stateName : '',
+    friends: state.auth.user ? state.auth.user.friends : [],
+    user: state.auth.user,
   }),
   {
     ...billsActions,
     ...usStateActions,
     ...repsActions,
+    ...locationActions,
     pushState: push,
   }
 )
@@ -41,6 +44,16 @@ export default class StateDetail extends Component {
     pushState: PropTypes.func,
     userCity: PropTypes.string,
     userUsState: PropTypes.string,
+    friends: PropTypes.array,
+    setLocation: PropTypes.func,
+    user: PropTypes.object,
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.askForLocation = this.askForLocation.bind(this);
+    this.gotLocation = this.gotLocation.bind(this);
   }
 
   componentWillMount() {
@@ -48,12 +61,33 @@ export default class StateDetail extends Component {
     const { location } = this.props;
     this.props.setUsState(stateCode);
     this.props.loadBills(stateCode);
-    this.props.loadReps(location.latitude, location.longitude);
+    if (! location) {
+      this.askForLocation();
+    } else {
+      this.props.loadReps(location.latitude, location.longitude);
+    }
+    // this.props.loadReps(location.latitude, location.longitude);
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if
-  // }
+  componentWillReceiveProps(nextProps) {
+    if (! this.props.location && nextProps.location) {
+      this.props.loadReps(location.latitude, location.longitude);
+    }
+  }
+
+  askForLocation() {
+    window.navigator.geolocation.getCurrentPosition(this.gotLocation, (err) => {
+      debugger;
+      console.log('geolocation error', err);
+      alert('Need your location!');
+    });
+  }
+
+  gotLocation(location) {
+    console.log(location.coords);
+    this.props.setLocation(location.coords);
+    this.props.pushState(`/state/${this.props.user.stateCode.toLowerCase()}`);
+  }
 
   render() {
     const { address, usState } = this.props;

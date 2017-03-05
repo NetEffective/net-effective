@@ -118,7 +118,7 @@ export default class Login extends Component {
       city,
       stateName,
       stateCode: stateNamesToCodes[stateName.toUpperCase()],
-      friendsCount: friends.summary.total_count,
+      friends: friends.data,
       imageUrl: picture.data.url,
     });
   }
