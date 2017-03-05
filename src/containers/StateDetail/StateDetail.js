@@ -95,7 +95,7 @@ export default class StateDetail extends Component {
   render() {
     const { address, usState } = this.props;
     const styles = require('./StateDetail.scss');
-    debugger;
+    console.log(this.props.friends);
     return (
       <div>
         <div className="row">
@@ -139,10 +139,10 @@ export default class StateDetail extends Component {
 
 
             <div>
-              Friends
+              <h2>Friends using the app</h2>
               {_.map(this.props.friends, friend => (
                 <Link to="/state/ar">
-                  {friend.name}
+                  <h4>{friend.name}</h4>
                 </Link>
               ))}
             </div>
