@@ -35,7 +35,7 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 export function loadBills(stateCode) {
-  debugger;
+  // debugger;
   return {
     types: [LOAD_BILLS, LOAD_BILLS_SUCCESS, LOAD_BILLS_FAIL],
     promise: (client) => client.get(`/bills/state/${stateCode.toUpperCase()}`)

@@ -20,13 +20,13 @@ export default class StateDetail extends Component {
   }
 
   componentWillMount() {
-    debugger;
+    // debugger;
     this.props.loadBills(this.props.params.stateCode);
   }
 
   render() {
     // const styles = require('./StateDetail.scss');
-    debugger;
+    // debugger;
     return (
       <div className="container">
         <div>

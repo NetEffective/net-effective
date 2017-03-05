@@ -66,7 +66,7 @@ export default class App extends Component {
           <Navbar.Header>
             <Navbar.Brand>
               <IndexLink to="/">
-                <span><img src={logoImage}/></span>
+                <span><img className={styles.logo} src={logoImage}/></span>
               </IndexLink>
             </Navbar.Brand>
             <Navbar.Toggle/>
