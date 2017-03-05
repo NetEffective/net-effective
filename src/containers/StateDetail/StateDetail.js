@@ -40,7 +40,8 @@ export default class StateDetail extends Component {
   }
 
   componentWillMount() {
-    const { address } = this.props;
+    // const { address } = this.props;
+    const address = '1077 texas st, san francisco, ca 94107';
     const { stateCode } = this.props.params;
     debugger;
     if (! stateCode || ! address) {

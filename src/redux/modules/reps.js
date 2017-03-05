@@ -38,6 +38,6 @@ export default function reducer(state = initialState, action = {}) {
 export function loadReps(address) {
   return {
     types: [LOAD_REPS, LOAD_REPS_SUCCESS, LOAD_REPS_FAIL],
-    promise: (client) => client.get(`/reps/${address}`)
+    promise: (client) => client.get(`/reps?address=${address}`)
   };
 }
