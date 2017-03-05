@@ -85,19 +85,8 @@ export default class Home extends Component {
             {! this.props.user &&
             <Login callback={this.handleFacebookLogin} />
             }
-            <p className={styles.github}>
-              <a href="https://github.com/NetEffective/net-effective"
-                 target="_blank">
-                <i className="fa fa-github"/> View on Github
-              </a>
-            </p>
           </div>
         </div>
-
-        {/* <div className={styles.address}>
-          <h3>Please enter your address so we can show you a script for your representatives.</h3>
-          <AddressSelection onSubmit={(name, address) => this.setUser(name, address)} />
-        </div> */}
       </div>
     );
   }

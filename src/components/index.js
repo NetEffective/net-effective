@@ -11,3 +11,4 @@ export Rep from './Rep/Rep';
 export CallRep from './Rep/CallRep';
 export CallScript from './CallScript/CallScript';
 export AddressSelection from './AddressSelection/AddressSelection';
+export Footer from './Footer/Footer';

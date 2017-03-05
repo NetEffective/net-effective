@@ -4,7 +4,7 @@
  */
 
 body {
-  font-family: "proxima-soft",sans-serif;
+  font-family: "proxima-soft", sans-serif;
 }
 
 .navbar-brand {
@@ -16,6 +16,6 @@ body {
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-  color: #5cb85c;
+  color: $brand-primary;
   background-color: transparent;
 }

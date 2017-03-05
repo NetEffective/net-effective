@@ -10,6 +10,7 @@ import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/module
 import { routeActions } from 'react-router-redux';
 import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
+import { Footer } from 'components';
 
 @asyncConnect([{
   promise: ({store: {dispatch, getState}}) => {
@@ -104,6 +105,10 @@ export default class App extends Component {
 
         <div className={styles.appContent}>
           {this.props.children}
+        </div>
+
+        <div className={styles.footer + ' ' + styles.appContent}>
+          <Footer />
         </div>
 
       </div>

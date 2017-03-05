@@ -7,13 +7,13 @@
 
 .masthead {
   .logo {
-    $size: 150px;
+    $size: 180px;
     height: $size;
     width: $size;
     img {
       height: $size;
       margin: auto;
-      margin-top: 1em;
+      transform:  rotate(18deg);
     }
   }
   h1 {
@@ -25,6 +25,3 @@
   }
 }
 
-.github {
-  margin-top: 6em;
-}
