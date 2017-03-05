@@ -1,6 +1,6 @@
-const LOAD_BILLS = 'redux-example/auth/LOAD_US_STATE';
-const LOAD_BILLS_SUCCESS = 'redux-example/auth/LOAD_US_STATE_SUCCESS';
-const LOAD_BILLS_FAIL = 'redux-example/auth/LOAD_US_STATE_FAIL';
+const LOAD_BILLS = 'LOAD_BILLS';
+const LOAD_BILLS_SUCCESS = 'LOAD_BILLS_SUCCESS';
+const LOAD_BILLS_FAIL = 'LOAD_BILLS_FAIL';
 
 const initialState = {
   loaded: false,
@@ -17,6 +17,7 @@ export default function reducer(state = initialState, action = {}) {
         list: initialState.list,
       };
     case LOAD_BILLS_SUCCESS:
+      debugger;
       return {
         ...state,
         loading: false,

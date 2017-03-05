@@ -1,8 +1,24 @@
 const SET_US_STATE = 'SET_US_STATE';
 
+const RED = 'RED';
+const BLUE = 'BLUE';
+
 const initialState = {
   loaded: false,
-  currentUsState: null,
+  current: {},
+};
+
+const usStates = {
+  AR: {
+    code: 'AR',
+    name: 'Arkansas',
+    color: RED,
+  },
+  CA: {
+    code: 'CA',
+    name: 'California',
+    color: BLUE,
+  }
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -11,7 +27,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loaded: true,
-        currentUsState: action.stateCode ? action.stateCode.toUpperCase() : null,
+        current: action.stateCode ? usStates[action.stateCode.toUpperCase()] : {},
       };
     default:
       return state;
