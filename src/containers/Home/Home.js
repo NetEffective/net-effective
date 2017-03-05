@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import config from '../../config';
 import Helmet from 'react-helmet';
-import {AddressSelection} from 'components';
+// import {AddressSelection} from 'components';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import * as authActions from 'redux/modules/auth';
@@ -24,9 +24,14 @@ export default class Home extends Component {
     user: PropTypes.object,
   }
 
-  setUserInfo(name, address) {
+  constructor(props) {
+    super(props);
+    this.setUser = this.setUser.bind(this);
+  }
+
+  setUser(name, address, imageUrl) {
     const usState = 'ar';
-    this.props.setUserInfo(name, address);
+    this.props.setUserInfo(name, address, imageUrl);
     this.props.pushState(`/state/${usState}`);
   }
 
@@ -39,7 +44,7 @@ export default class Home extends Component {
       <div className={styles.home}>
         <Helmet title="Home"/>
         {! this.props.user &&
-        <Login />
+        <Login callback={this.setUser} />
         }
         <div className={styles.masthead}>
           <div className="container">
@@ -59,10 +64,10 @@ export default class Home extends Component {
           </div>
         </div>
 
-        <div className={styles.address}>
-          <h3>Please enter your address so we can show you a script for your representatives.</h3>
-          <AddressSelection onSubmit={(name, address) => this.setUserInfo(name, address)} />
-        </div>
+        {/* <div className={styles.address}> */}
+          {/* <h3>Please enter your address so we can show you a script for your representatives.</h3> */}
+          {/* <AddressSelection onSubmit={(name, address) => this.setUser(name, address)} /> */}
+        {/* </div> */}
       </div>
     );
   }

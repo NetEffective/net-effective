@@ -16,6 +16,7 @@ export default class Login extends Component {
     login: PropTypes.func,
     logout: PropTypes.func,
     setUserInfo: PropTypes.func,
+    callback: PropTypes.func,
   }
 
   constructor(props) {
@@ -32,19 +33,18 @@ export default class Login extends Component {
   // }
 
   handleFacebookButtonClick() {
-    debugger;
+    //
   }
 
   facebookLoginCallback(response) {
     debugger;
-    this.props.setUserInfo(response.name, null, response.picture.data.url);
+    this.props.callback(response.name, null, response.picture.data.url);
   }
 
   render() {
     const {user, logout} = this.props;
     const styles = require('./Login.scss');
     // const { facebookAppId } = config.apiKeys;
-    // debugger;
     return (
       <div className={styles.login + ' container'}>
         {!user &&
@@ -62,10 +62,12 @@ export default class Login extends Component {
               <FacebookLogin
                 appId="1297839500295733"
                 autoLoad
-                fields="name,email,picture"
+                fields="name,email,picture,friends,locale,location,hometown"
                 onClick={this.handleFacebookButtonClick}
                 scope="public_profile,user_friends,user_location,user_hometown"
                 callback={this.facebookLoginCallback}
+                cssClass={styles.btnFbConnect + ' btn btn-block btn-lg'}
+                icon="fa-facebook"
               />
             </div>
           </div>

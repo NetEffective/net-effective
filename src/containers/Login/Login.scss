@@ -18,7 +18,14 @@ $fb-blue: rgb(69, 101, 160);
   background: $fb-blue;
   color: white;
 
-  &:hover, &:focus{
+  margin-top: 25px;
 
+  &:hover, &:focus{
+    color: white;
+    opacity: .8;
+  }
+
+  i {
+    margin-right: 10px;
   }
 }
