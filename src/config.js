@@ -1,7 +1,7 @@
-require('babel-polyfill');
+// This module is loaded both on the server and the client,
+// but some keys won't be available on the client (b/c they're loaded from .env file).
 
-// read env vars from private `.env` file in root.
-require('dotenv').config();
+require('babel-polyfill');
 
 const environment = {
   development: {

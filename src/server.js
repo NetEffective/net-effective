@@ -1,3 +1,6 @@
+// read env vars from private `.env` file in root.
+require('dotenv').config();
+
 import Express from 'express';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
