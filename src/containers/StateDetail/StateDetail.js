@@ -5,7 +5,7 @@ import * as billsActions from 'redux/modules/bills';
 import * as usStateActions from 'redux/modules/usState';
 import * as repsActions from 'redux/modules/reps';
 import { push } from 'react-router-redux';
-import {Bill, Rep} from '../../components';
+import {Bill, Rep} from 'components';
 
 @connect(
   state => ({
@@ -40,8 +40,7 @@ export default class StateDetail extends Component {
   }
 
   componentWillMount() {
-    // const { address } = this.props;
-    const address = '1077 texas st, san francisco, ca 94107';
+    const { address } = this.props;
     const { stateCode } = this.props.params;
     if (! stateCode || ! address) {
       this.props.pushState('/');
@@ -52,44 +51,50 @@ export default class StateDetail extends Component {
   }
 
   render() {
+    // const { usState, address } = this.props;
+    const styles = require('./StateDetail.scss');
+    // TODO: @dgattey remove
+    const address = '191 Caselli Ave., San Francisco, CA 94114';
     const { usState } = this.props;
-    // const styles = require('./StateDetail.scss');
     return (
-      <div className="container">
-        <div>
-          <h1>{usState.name}</h1>
+      <div>
+        <div className="row">
+          <div className={styles.stateTitle + ' col-xs-12'}>
+            <div className="page-header">
+              <h1>{usState.name} <small>{address}</small></h1>
+            </div>
+            {this.props.bills &&
+            <p>Looks like there are a few bills in your state that affect abortion access. Take a look and make some calls to your representatives!</p>
+            }
+          </div>
+        </div>
+        <div className="row">
           {this.props.bills &&
-          <div>
-            <h2><strong>{usState.code}</strong> Bills</h2>
-            <ul>
-              {_.map(this.props.bills, bill => (
-                <li key={bill.billTitle}>
-                  <Bill {...bill} userName={this.props.userName} />
-                </li>
-              ))}
-            </ul>
+          <div className="col-md-8">
+            <h2>Bills up for debate</h2>
+            {_.map(this.props.bills, bill => (
+              <Bill {...bill} key={bill.billTitle} userName={this.props.userName} />
+            ))}
+            <p className={styles.caughtup}>✌️ You're all caught up! No more bills.</p>
           </div>
           }
 
           {! this.props.bills &&
-          <h2>Unable to load the pertinent bills =(</h2>
+          <p>Unable to load the bills pertinent to you. Please try again.</p>
           }
 
           {this.props.reps &&
-          <div>
-            <h2><strong>{usState.code}</strong> Reps</h2>
-            <ul>
-              {_.map(this.props.reps, (rep, i) => (
-                <Rep key={`rep-${i}`} {...rep} />
-              ))}
-            </ul>
+          <div className="col-md-4">
+            <h2>Your Representatives</h2>
+            {_.map(this.props.reps, (rep, i) => (
+              <Rep key={`rep-${i}`} {...rep} />
+            ))}
           </div>
           }
 
           {! this.props.reps &&
           <h2>Unable to load your local reps for {usState.code} =(</h2>
           }
-
         </div>
       </div>
     );

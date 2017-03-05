@@ -1,0 +1,16 @@
+$margin: 2em;
+
+.bill {
+	margin-bottom: $margin;
+	margin-top: $margin;
+	.icon {
+		width: 100%;
+		height: 100%;
+	}
+	.title {
+		margin-top: 0;
+	}
+	.url {
+		margin-right: 1em;
+	}
+}
