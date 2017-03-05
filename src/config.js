@@ -19,6 +19,8 @@ module.exports = Object.assign({
   apiPort: process.env.APIPORT,
   apiKeys: {
     googleCivicInfoApi: process.env.API_KEY_GOOGLE_CIVIC_INFO || '',
+    facebookAppId: process.env.FACEBOOK_APP_ID || '',
+    facebookAppSecret: process.env.FACEBOOK_APP_SECRET || ''
   },
   app: {
     title: 'neteffective',
