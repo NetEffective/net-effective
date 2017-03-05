@@ -1,6 +1,10 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
+import FacebookLogin from 'react-facebook-login';
+
 import * as authActions from 'redux/modules/auth';
+
+const config = require('../../config');
 
 @connect(
   state => ({user: state.auth.user}),
@@ -13,12 +17,27 @@ export default class Login extends Component {
     logout: PropTypes.func
   }
 
+  constructor(props) {
+    super(props);
+    this.handleFacebookButtonClick = this.handleFacebookButtonClick.bind(this);
+    this.facebookLoginCallback = this.facebookLoginCallback.bind(this);
+  }
+
   // handleSubmit = (event) => {
   //   event.preventDefault();
   //   this.props.login(this.refs.email.value, this.refs.password.value);
   //   this.refs.email.value = '';
   //   this.refs.password.value = '';
   // }
+
+  handleFacebookButtonClick() {
+    debugger;
+  }
+
+  facebookLoginCallback(response) {
+    console.log(response);
+    debugger;
+  }
 
   render() {
     const {user, logout} = this.props;
@@ -34,6 +53,15 @@ export default class Login extends Component {
                 <i className="fa fa-facebook-square fa-lg" style={{marginRight: 10}} />
                 Connect with Facebook
               </button>
+
+              <FacebookLogin
+                appId={config.apiKeys.facebookAppId}
+                autoLoad
+                fields="name,email,picture"
+                onClick={this.handleFacebookButtonClick}
+                scope="public_profile,user_friends,user_location"
+                callback={this.facebookLoginCallback}
+              />
             </div>
           </div>
         </div>
